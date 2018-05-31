@@ -66,6 +66,7 @@ div.places div.linhaFormButton {
 }
 
 div.places div.linhaForm input,
+div.places div.linhaForm select,
 div.places div.linhaFormButton button {
     background-color: #333;
     font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, sans-serif;
