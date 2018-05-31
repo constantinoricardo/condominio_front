@@ -1,0 +1,1 @@
+<p data-bind="visible: morador">Teste Morador</p>
