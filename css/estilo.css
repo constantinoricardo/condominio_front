@@ -1,22 +1,41 @@
 .container {
     margin: 0 auto;
-    width: 1000px;
+    width: 994px;
+    background: #FFF;
+    height: auto;
+    border-left: 1px solid #333;
+    box-shadow: 10px 10px 10px #333;
 }
 
 body {
-    background: #FFF1D6;
+    background: #FFF;
 }
 
 .topo {
     background-color: #333;
     color: #FFF;
     border-color: #CCC #999 #999 #CCC;
-    border: 1px solid #CCC;
+    border-bottom: 1px solid #CCC;
     padding: 10px;
-    width: 972px;
+    width: 974px;
 }
 
-.topo h1 {
+.topo h1.ccb {
+    display: block;
+    float: left;
+    border: 5px solid #ffffff;
+    width: 118px;
+    text-align: center;
+    margin-top: 5px;
+    margin-left: 15px;
+    border-radius: 50%;
+    font-size: 45px;
+    height: 57px;
+    line-height: 57px;
+    padding: 12px 5px 4px 5px;
+}
+
+.topo h1.agendamento {
     font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, sans-serif;
     line-height: 1.6;
     font-style: normal;

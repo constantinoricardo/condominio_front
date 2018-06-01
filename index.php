@@ -12,7 +12,8 @@
 <div class="container">
 
     <div class="topo">
-        <h1>Agendamento Condomínio</h1>
+        <h1 class="ccb">CCB</h1>
+        <h1 class="agendamento">Agendamento Condomínio</h1>
     </div>
 
     <?php include 'html/menu.php'; ?>
