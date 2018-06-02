@@ -23,5 +23,32 @@
             </form>
         </div>
 
+        <div class="lista">
+            <table class="table" data-bind="foreach: list">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Número</th>
+                        <th>Descrição</th>
+                        <th colspan="2"></th>
+                    </tr>
+                </thead>
+
+                <tbody data-bind="foreach: $data">
+                    <tr>
+                        <td data-bind="text: $data.id"></td>
+                        <td data-bind="text: $data.numero"></td>
+                        <td data-bind="text: $data.descricao"></td>
+                        <td>
+                            <button type="button">Editar</button>
+                        </td>
+                        <td>
+                            <button type="button">Excluir</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
     </div>
 </script>

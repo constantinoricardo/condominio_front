@@ -6,6 +6,21 @@ define('bloco', [
 
     this.numero = ko.observable("");
     this.descricao = ko.observable("");
+    this.list = ko.observableArray([]);
+
+    this.getList = function() {
+        let self = this;
+
+        $.ajax({
+            url: "http://localhost/condominio/index.php/bloco/find",
+            type: "GET",
+            dataType: "json",
+
+            success: function(response) {
+                self.list.push(response);
+            }
+        });
+    };
 
     this.add = function() {
         let parameters = {
@@ -47,5 +62,6 @@ define('bloco', [
         this.descricao("");
     };
 
+    getList();
 
 });
