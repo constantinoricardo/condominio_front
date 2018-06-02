@@ -1,0 +1,25 @@
+div.lista {
+    width: 750px;
+    padding: 10px 10px 10px 10px;
+}
+
+div.lista table {
+    /*border: 1px solid black;*/
+    margin-left: 16px;
+    width: 742px;
+}
+
+div.lista table tr th {
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, sans-serif;
+    background-color: #333;
+    color: #FFF;
+    padding: 8px 0 8px 0;
+}
+
+div.lista table tr td {
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, sans-serif;
+    background-color: #666666;
+    color: #FFF;
+    padding: 5px 0 5px 0;
+    text-align: center;
+}

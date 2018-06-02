@@ -6,6 +6,7 @@
 
     <link rel="stylesheet" type="text/css" href="css/estilo.css" />
     <link rel="stylesheet" type="text/css" href="css/menu.css" />
+    <link rel="stylesheet" type="text/css" href="css/table.css" />
     <link rel="stylesheet" type="text/css" href="node_modules/jqueryui/jquery-ui.min.css" />
 </head>
 <body>

@@ -48,7 +48,7 @@ div.places {
     margin-top: 52px;
     position: relative;
     width: 992px;
-    height: 450px;
+    height: auto;
     padding: 20px 50px;
 }
 
@@ -86,7 +86,8 @@ div.places div.linhaFormButton {
 
 div.places div.linhaForm input,
 div.places div.linhaForm select,
-div.places div.linhaFormButton button {
+div.places div.linhaFormButton button,
+table button {
     background-color: #333;
     font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, sans-serif;
     color: #fff;
@@ -96,6 +97,7 @@ div.places div.linhaFormButton button {
     box-shadow: 0 0 5px #fff, 2px 2px 2px rgba(0, 0, 0, 0.25) inset;
     outline: none;
     border-radius: 20%;
+    cursor: pointer;
 }
 
 div.places div.linhaFormButton button {
