@@ -1,5 +1,5 @@
-<script type="text/html" id="item">
-    <div class="places" data-bind="visible: item">
+<?php include 'topo.php'; ?>
+    <div class="places">
         <h1>Item</h1>
 
         <div class="form">
@@ -23,4 +23,4 @@
         </div>
 
     </div>
-</script>
+<?php include 'cabecalho.php'; ?>

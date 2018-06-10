@@ -4,64 +4,90 @@ define('bloco', [
     'jqueryui'
 ], function ($, ko) {
 
-    this.numero = ko.observable("");
-    this.descricao = ko.observable("");
-    this.list = ko.observableArray([]);
+    let blocoMethods = function() {
 
-    this.getList = function() {
-        let self = this;
+        const self = this;
 
-        $.ajax({
-            url: "http://localhost/condominio/index.php/bloco/find",
-            type: "GET",
-            dataType: "json",
+        this.numero = ko.observable("");
+        this.descricao = ko.observable("");
+        this.list = ko.observableArray([]);
 
-            success: function(response) {
-                self.list.push(response);
-            }
-        });
-    };
+        this.getList = function() {
+            let self = this;
 
-    this.add = function() {
-        let parameters = {
-            "numero" : this.numero(),
-            "descricao": this.descricao()
+            $.ajax({
+                url: "http://localhost/condominio/index.php/bloco/find",
+                type: "GET",
+                dataType: "json",
+
+                success: function(response) {
+                    self.list.push(response);
+                }
+            });
         };
-        let self = this;
 
-        $.ajax({
-            url: "http://localhost/condominio/index.php/bloco/inserir",
-            type: "POST",
-            data: parameters,
-            dataType: 'json',
+        this.remove = function() {
 
-            success: function (response) {
-                let message = response.message;
-                let status = response.status;
+            let args = arguments;
 
-                $('<div></div>').html(message).dialog({
-                    title: "Informação",
-                    resizable: false,
-                    modal: true,
-                    buttons: {
-                        'Ok': function () {
-                            $(this).dialog('close');
+            debugger;
 
-                            if (status == 1)
-                                self.reset();
-                        }
+            $('<div></div>').html("Deseja excluir esse bloco?").dialog({
+                title: 'Bloco',
+                resizable: false,
+                modal: true,
+                buttons: {
+                    'Sim': function() {
+
                     }
-                });
-            }
-        });
+                }
+            });
+        };
+
+        this.add = function() {
+
+            let parameters = {
+                "numero" : self.numero(),
+                "descricao": self.descricao()
+            };
+
+            $.ajax({
+                url: "http://localhost/condominio/index.php/bloco/inserir",
+                type: "POST",
+                data: parameters,
+                dataType: 'json',
+
+                success: function (response) {
+                    let message = response.message;
+                    let status = response.status;
+
+                    $('<div></div>').html(message).dialog({
+                        title: "Informação",
+                        resizable: false,
+                        modal: true,
+                        buttons: {
+                            'Ok': function () {
+                                $(this).dialog('close');
+
+                                if (status == 1)
+                                    self.reset();
+                            }
+                        }
+                    });
+                }
+            });
+
+        };
+
+        this.reset = function() {
+            this.numero("");
+            this.descricao("");
+        };
+
+        this.getList();
 
     };
 
-    this.reset = function() {
-        this.numero("");
-        this.descricao("");
-    };
-
-    getList();
+    ko.applyBindings(new blocoMethods(), document.getElementById("bloco"));
 
 });

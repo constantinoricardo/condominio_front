@@ -1,32 +1,32 @@
 <nav>
-    <ul class="menu">
+    <ul class="menu" id="menu">
         <li>
-            <a href="#" data-bind="click: choiseOption.bind(this, 'home')">
+            <a href="index.php">
                 Home
             </a>
         </li>
         <li>
-            <a href="#" data-bind="click: choiseOption.bind(this, 'bloco')">
+            <a href="bloco.php">
                 Bloco
             </a>
         </li>
         <li>
-            <a href="#" data-bind="click: choiseOption.bind(this, 'apartamento')">
+            <a href="apartamento.php">
                 Apartamento
             </a>
         </li>
         <li>
-            <a href="#" data-bind="click: choiseOption.bind(this, 'morador')">
+            <a href="morador.php">
                 Morador
             </a>
         </li>
         <li>
-            <a href="#" data-bind="click: choiseOption.bind(this, 'item')">
+            <a href="item.php">
                 Item
             </a>
         </li>
         <li>
-            <a href="#" data-bind="click: choiseOption.bind(this, 'agendamento')">
+            <a href="agendamento.php">
                 Agendamento
             </a>
         </li>

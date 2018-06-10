@@ -4,9 +4,12 @@ require.config({
         'knockout': '../node_modules/knockout/build/output/knockout-latest',
         'jqueryui': '../node_modules/jqueryui/jquery-ui',
         'main': '../js/modules/main',
-        'bloco': '../js/modules/app/bloco'
+        'bloco': '../js/modules/app/bloco',
+        'apartamento': '../js/modules/app/apartamento'
     }
 });
 
 
-require(['main', 'bloco']);
+require(['bloco', 'apartamento']);
+
+

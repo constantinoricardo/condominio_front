@@ -1,5 +1,5 @@
-<script type="text/html" id="bloco">
-    <div class="places">
+<?php include 'topo.php'; ?>
+    <div class="places" id="bloco">
 
         <h1>Bloco</h1>
 
@@ -24,7 +24,7 @@
         </div>
 
         <div class="lista">
-            <table class="table" data-bind="foreach: list">
+            <table class="table" id="table" data-bind="foreach: list">
                 <thead>
                     <tr>
                         <th>Código</th>
@@ -43,7 +43,7 @@
                             <button type="button">Editar</button>
                         </td>
                         <td>
-                            <button type="button">Excluir</button>
+                            <button type="button" data-bind="click: $parents[1].remove.bind(this)">Excluir</button>
                         </td>
                     </tr>
                 </tbody>
@@ -51,4 +51,4 @@
         </div>
 
     </div>
-</script>
+<?php include 'cabecalho.php'; ?>

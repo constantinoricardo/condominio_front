@@ -5,12 +5,15 @@ define('main',
 
     let menuChoise = function() {
 
-        this.templatePrincipal = ko.observable('home');
+        this.bloco = ko.observable(false);
 
         this.choiseOption = function(objeto, option) {
-            option.templatePrincipal(objeto);
+            debugger;
+            window.location.href = objeto + ".php";
         }
     }
+
+    debugger;
 
     ko.options.useOnlyNativeEvents = true;
     ko.applyBindings(new menuChoise());

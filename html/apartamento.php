@@ -1,5 +1,5 @@
-<script type="text/html" id="apartamento">
-    <div class="places" data-bind="visible: apartamento">
+<?php include 'topo.php'; ?>
+    <div class="places" id="apartamento">
 
         <h1>Apartamento</h1>
 
@@ -23,4 +23,4 @@
             </form>
         </div>
     </div>
-</script>
+<?php include 'cabecalho.php'; ?>
