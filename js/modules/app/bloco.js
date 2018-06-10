@@ -29,16 +29,39 @@ define('bloco', [
         this.remove = function() {
 
             let args = arguments;
+            let id = args[0].id;
+            let that = this;
 
             debugger;
 
-            $('<div></div>').html("Deseja excluir esse bloco?").dialog({
+            $('<div></div>').html("Tem certeza que deseja realmente excluir esse bloco?").dialog({
                 title: 'Bloco',
                 resizable: false,
                 modal: true,
+                height: 250,
+                width: 400,
                 buttons: {
                     'Sim': function() {
+                        let self = this;
+                        $.ajax({
+                            url: "http://localhost/condominio/index.php/bloco/delete",
+                            type: "POST",
+                            data: {id: id},
+                            dataType: 'json',
 
+                            success: function(response) {
+                                if (response.status == 1) {
+                                    $(self).dialog('close');
+                                    debugger;
+                                } else if (response.status = 2)
+                                    console.log(response.message);
+
+                            }
+                        });
+                    },
+
+                    'Não': function() {
+                        $(this).dialog('close');
                     }
                 }
             });
