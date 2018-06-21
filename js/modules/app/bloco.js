@@ -4,16 +4,46 @@ define('bloco', [
     'jqueryui'
 ], function ($, ko) {
 
-    let blocoMethods = function() {
+    function blocoMethods() {
 
         const self = this;
 
-        this.numero = ko.observable("");
-        this.descricao = ko.observable("");
-        this.list = ko.observableArray([]);
+        self.id = ko.observable();
+        self.numero = ko.observable("");
+        self.descricao = ko.observable("");
+        self.list = ko.observableArray([]);
+        self.buttonAdd = ko.observable(true);
+        self.buttonAlterar = ko.observable(false);
 
-        this.getList = function() {
-            let self = this;
+        self.buttonEditar = ko.observable(true);
+        self.buttonCancelar = ko.observable(false);
+
+        self.listaBlocoTemplatePrincipal = ko.observable('tabelaBloco');
+
+        self.editar = function(item) {
+
+            debugger;
+            
+            self.id(item.id);
+            self.numero(item.numero);
+            self.descricao(item.descricao);
+
+            self.buttonAdd(false);
+            self.buttonAlterar(true);
+            self.buttonEditar(false);
+            self.buttonCancelar(true);
+        };
+
+        self.alterar = function() {
+
+        };
+
+        self.cancelar = function() {
+
+        };
+
+        self.getList = function() {
+            let that = this;
 
             $.ajax({
                 url: "http://localhost/condominio/index.php/bloco/find",
@@ -21,18 +51,19 @@ define('bloco', [
                 dataType: "json",
 
                 success: function(response) {
-                    self.list.push(response);
+                    var data = Object.values(response);
+
+                    data.map(function(v) {
+                        that.list.push(v);
+                    });
                 }
             });
         };
 
-        this.remove = function() {
+        self.remover = function() {
 
             let args = arguments;
             let id = args[0].id;
-            let that = this;
-
-            debugger;
 
             $('<div></div>').html("Tem certeza que deseja realmente excluir esse bloco?").dialog({
                 title: 'Bloco',
@@ -42,7 +73,9 @@ define('bloco', [
                 width: 400,
                 buttons: {
                     'Sim': function() {
-                        let self = this;
+                        let that = this;
+                        const item = args[0];
+
                         $.ajax({
                             url: "http://localhost/condominio/index.php/bloco/delete",
                             type: "POST",
@@ -50,12 +83,8 @@ define('bloco', [
                             dataType: 'json',
 
                             success: function(response) {
-                                if (response.status == 1) {
-                                    $(self).dialog('close');
-                                    debugger;
-                                } else if (response.status = 2)
-                                    console.log(response.message);
-
+                                self.list.remove(item);
+                                $(that).dialog('close');
                             }
                         });
                     },
@@ -67,7 +96,7 @@ define('bloco', [
             });
         };
 
-        this.add = function() {
+        self.add = function() {
 
             let parameters = {
                 "numero" : self.numero(),
@@ -83,6 +112,8 @@ define('bloco', [
                 success: function (response) {
                     let message = response.message;
                     let status = response.status;
+                    var parametros = parameters;
+                    parametros.id = response.id;
 
                     $('<div></div>').html(message).dialog({
                         title: "Informação",
@@ -92,8 +123,10 @@ define('bloco', [
                             'Ok': function () {
                                 $(this).dialog('close');
 
-                                if (status == 1)
+                                if (status == 1) {
+                                    self.list.push(parametros);
                                     self.reset();
+                                }
                             }
                         }
                     });
@@ -102,15 +135,18 @@ define('bloco', [
 
         };
 
-        this.reset = function() {
-            this.numero("");
-            this.descricao("");
+        self.reset = function() {
+            self.numero("");
+            self.descricao("");
         };
 
-        this.getList();
+        self.init = function() {
+            self.getList();
+
+            ko.applyBindings(self, document.getElementById("bloco"));
+        };
 
     };
 
-    ko.applyBindings(new blocoMethods(), document.getElementById("bloco"));
-
+    return new blocoMethods();
 });

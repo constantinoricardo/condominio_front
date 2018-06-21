@@ -9,7 +9,11 @@ require.config({
     }
 });
 
+require(['bloco', 'apartamento'], function(bloco, apartamento) {
+    bloco.init();
+    apartamento.init();
+});
 
-require(['bloco', 'apartamento']);
+
 
 

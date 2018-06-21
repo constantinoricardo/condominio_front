@@ -4,11 +4,18 @@ define('apartamento', [
     'jqueryui'
 ], function ($, ko) {
 
-    let apartamentoMethods = function() {
+    function apartamentoMethods() {
 
+        let self = this;
+
+        self.init = function() {
+            console.log("apartamento classic");
+
+            ko.applyBindings(self, document.getElementById("apartamento"));
+        }
 
     };
 
-    ko.applyBindings(new apartamentoMethods(), document.getElementById("apartamento"));
+    return new apartamentoMethods();
 
 });
