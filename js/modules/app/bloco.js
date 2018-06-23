@@ -1,8 +1,9 @@
 define('bloco', [
     'jquery',
     'knockout',
+    'main',
     'jqueryui'
-], function ($, ko) {
+], function ($, ko, main) {
 
     function blocoMethods() {
 
@@ -15,38 +16,42 @@ define('bloco', [
         self.buttonAdd = ko.observable(true);
         self.buttonAlterar = ko.observable(false);
 
-        self.buttonEditar = ko.observable(true);
-        self.buttonCancelar = ko.observable(false);
+        self.selectedItem = ko.observable();
 
         self.listaBlocoTemplatePrincipal = ko.observable('tabelaBloco');
 
         self.editar = function(item) {
-
-            debugger;
-            
             self.id(item.id);
             self.numero(item.numero);
             self.descricao(item.descricao);
 
             self.buttonAdd(false);
             self.buttonAlterar(true);
-            self.buttonEditar(false);
-            self.buttonCancelar(true);
+
+            self.selectedItem(item);
         };
 
-        self.alterar = function() {
-
+        self.listaBlocoTemplatePrincipal = function(item) {
+            return self.selectedItem() === item ? 'tabelaCancelarBloco' : 'tabelaBloco';
         };
 
         self.cancelar = function() {
+            self.id("");
+            self.numero("");
+            self.descricao("");
 
+            self.buttonAdd(true);
+            self.buttonAlterar(false);
+
+            self.selectedItem(null);
         };
 
         self.getList = function() {
             let that = this;
+            let origin = main.origin();
 
             $.ajax({
-                url: "http://localhost/condominio/index.php/bloco/find",
+                url: origin+"/condominio/index.php/bloco/find",
                 type: "GET",
                 dataType: "json",
 
@@ -96,15 +101,56 @@ define('bloco', [
             });
         };
 
+        self.alterar = function(item) {
+
+            let origin = main.origin();
+            let parameters = {
+                "id" : self.id(),
+                "numero" : self.numero(),
+                "descricao" : self.descricao()
+            };
+
+            $.ajax({
+                url: origin + "/condominio/index.php/bloco/alterar",
+                type: "POST",
+                data: parameters,
+                dataType: "json",
+
+                success: function(response) {
+                    let message = response.message;
+                    let status = response.status;
+                    var parametros = parameters;
+
+                    $('<div></div>').html(message).dialog({
+                        title: "Informação",
+                        resizable: false,
+                        modal: true,
+                        buttons: {
+                            'Ok': function () {
+                                $(this).dialog('close');
+
+                                if (status == 1) {
+                                    self.list([]);
+                                    self.getList();
+                                    self.reset();
+                                }
+                            }
+                        }
+                    });
+                }
+            });
+        };
+
         self.add = function() {
 
+            let origin = main.origin();
             let parameters = {
                 "numero" : self.numero(),
                 "descricao": self.descricao()
             };
 
             $.ajax({
-                url: "http://localhost/condominio/index.php/bloco/inserir",
+                url: origin + "/condominio/index.php/bloco/inserir",
                 type: "POST",
                 data: parameters,
                 dataType: 'json',

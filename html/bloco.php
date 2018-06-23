@@ -41,14 +41,28 @@
                 </tbody>
             </table>
 
+            <script type="text/html" id="tabelaCancelarBloco">
+                <tr>
+                    <td data-bind="text: id"></td>
+                    <td data-bind="text: numero"></td>
+                    <td data-bind="text: descricao"></td>
+                    <td>
+                        <button type="button" data-bind="click: $root.cancelar">Cancelar</button>
+                    </td>
+                    <td>
+                        <button type="button" data-bind="click: $root.remover">Excluir</button>
+                    </td>
+                </tr>
+
+            </script>
+
             <script type="text/html" id="tabelaBloco">
                 <tr>
                     <td data-bind="text: id"></td>
                     <td data-bind="text: numero"></td>
                     <td data-bind="text: descricao"></td>
                     <td>
-                        <button type="button" data-bind="click: $root.editar, visible: $root.buttonEditar">Editar</button>
-                        <button type="button" data-bind="click: $root.cancelar, visible: $root.buttonCancelar">Cancelar</button>
+                        <button type="button" data-bind="click: $root.editar">Editar</button>
                     </td>
                     <td>
                         <button type="button" data-bind="click: $root.remover">Excluir</button>
