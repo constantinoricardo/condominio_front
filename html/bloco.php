@@ -27,7 +27,7 @@
 
 
         <div class="lista">
-            <table class="table" id="table">
+            <table class="table" id="table" data-bind="visible: tableBlocoVisible">
                 <thead>
                     <tr>
                         <th>Código</th>

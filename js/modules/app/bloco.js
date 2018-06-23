@@ -20,6 +20,8 @@ define('bloco', [
 
         self.listaBlocoTemplatePrincipal = ko.observable('tabelaBloco');
 
+        self.tableBlocoVisible = ko.observable(false);
+
         self.editar = function(item) {
             self.id(item.id);
             self.numero(item.numero);
@@ -56,7 +58,10 @@ define('bloco', [
                 dataType: "json",
 
                 success: function(response) {
-                    var data = Object.values(response);
+                    let showBloco = (!response.length) ? false : true;
+                    let data = Object.values(response);
+
+                    that.tableBlocoVisible(showBloco);
 
                     data.map(function(v) {
                         that.list.push(v);
@@ -80,15 +85,16 @@ define('bloco', [
                     'Sim': function() {
                         let that = this;
                         const item = args[0];
+                        let origin = main.origin();
 
                         $.ajax({
-                            url: "http://localhost/condominio/index.php/bloco/delete",
+                            url: origin + "/condominio/index.php/bloco/delete",
                             type: "POST",
                             data: {id: id},
                             dataType: 'json',
 
                             success: function(response) {
-                                self.list.remove(item);
+                                self.upgradeTable();
                                 $(that).dialog('close');
                             }
                         });
@@ -99,6 +105,11 @@ define('bloco', [
                     }
                 }
             });
+        };
+
+        self.upgradeTable = function() {
+            self.list([]);
+            self.getList();
         };
 
         self.alterar = function(item) {
@@ -130,8 +141,7 @@ define('bloco', [
                                 $(this).dialog('close');
 
                                 if (status == 1) {
-                                    self.list([]);
-                                    self.getList();
+                                    self.upgradeTable();
                                     self.reset();
                                 }
                             }
@@ -170,7 +180,7 @@ define('bloco', [
                                 $(this).dialog('close');
 
                                 if (status == 1) {
-                                    self.list.push(parametros);
+                                    self.upgradeTable();
                                     self.reset();
                                 }
                             }
