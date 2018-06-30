@@ -9,11 +9,21 @@ require.config({
     }
 });
 
-require(['bloco', 'apartamento'], function(bloco, apartamento) {
-    bloco.init();
-    apartamento.init();
-});
+let url = window.location.toString();
+let array = url.split("/").reverse();
+let page = array[0].replace(".php", "");
 
+if (page == "bloco") {
+    require(['bloco'], function(bloco) {
+        bloco.init();
+    });
+}
+
+if (page == "apartamento") {
+    require(['apartamento'], function (apartamento) {
+        apartamento.init();
+    });
+}
 
 
 
