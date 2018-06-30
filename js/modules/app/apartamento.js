@@ -74,8 +74,38 @@ define('apartamento', [
             });
         };
 
-        self.remover = function() {
+        self.remover = function(item) {
+            let id = item.id;
 
+            $('<div></div>').html("Tem certeza que deseja realmente excluir esse apartamento?").dialog({
+                title: 'Bloco',
+                resizable: false,
+                modal: true,
+                height: 250,
+                width: 400,
+                buttons: {
+                    'Sim': function () {
+                        let that = this;
+                        let origin = main.origin();
+
+                        $.ajax({
+                            url: origin + "/condominio/index.php/apartamento/delete",
+                            type: "POST",
+                            data: {id: id},
+                            dataType: 'json',
+
+                            success: function (response) {
+                                self.upgradeTable();
+                                $(that).dialog('close');
+                            }
+                        });
+                    },
+
+                    'Não': function () {
+                        $(this).dialog('close');
+                    }
+                }
+            });
         };
 
         self.editar = function(item) {
@@ -163,9 +193,9 @@ define('apartamento', [
         };
 
         self.init = function() {
-
             self.getCombos();
             self.getList();
+
             ko.applyBindings(self, document.getElementById("apartamento"));
         }
 
