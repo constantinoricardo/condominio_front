@@ -5,6 +5,7 @@
 
         <div class="form">
             <form name="formulario">
+                <input type="hidden" name="id" data-bind="value: id" />
                 <div class="linhaForm">
                     <label>Número do Apartamento:</label>
                     <input type="number" data-bind="value: numero" />
@@ -12,7 +13,7 @@
 
                 <div class="linhaForm">
                     <label>Bloco:</label>
-                    <select name="bloco" data-bind="options: blocosCombo, optionsText: 'descricao', optionsValue: 'id', value: numeroBlocoSelected"></select>
+                    <select name="bloco" data-bind="options: blocosCombo, selectedOptions: choiseOption, optionsText: 'descricao', optionsValue: 'id', value: numeroBlocoSelected"></select>
                 </div>
 
                 <div class="linhaFormButton">

@@ -9,10 +9,13 @@ define('apartamento', [
 
         let self = this;
 
+        self.id = ko.observable();
         self.numero = ko.observable("");
         self.bloco = ko.observable("");
         self.morador = ko.observable("");
         self.numeroBlocoSelected = ko.observable();
+
+        self.choiseOption = ko.observableArray([]);
 
         self.listApartamento = ko.observableArray([]);
         self.buttonAdd = ko.observable(true);
@@ -30,15 +33,19 @@ define('apartamento', [
 
         self.cancelar = function() {
 
+            self.reset();
+
+            self.buttonAdd(true);
+            self.buttonAlterar(false);
+
+            self.selectedItem(null);
         };
 
         self.reset = function() {
-            var blocosArray = self.blocosCombo();
-            self.blocosCombo([]);
-            blocosArray.map(function(v) {
-                self.blocosCombo.push(v);
-            });
+
+            self.id("");
             self.numero("");
+            self.choiseOption([0]);
 
         };
 
@@ -71,7 +78,15 @@ define('apartamento', [
 
         };
 
-        self.editar = function() {
+        self.editar = function(item) {
+
+            self.id(item.id);
+            self.numero(item.numero);
+            self.choiseOption([item.bloco_id]);
+
+            self.buttonAdd(false);
+            self.buttonAlterar(true);
+            self.selectedItem(item);
 
         };
 
