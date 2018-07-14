@@ -25,5 +25,11 @@ if (page == "apartamento") {
     });
 }
 
+if (page == "morador") {
+    require(['morador'], function(morador) {
+        morador.init();
+    });
+}
+
 
 
