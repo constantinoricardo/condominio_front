@@ -121,7 +121,42 @@ define('apartamento', [
         };
 
         self.alterar = function() {
+            
+            let origin = main.origin();
+            let parameters = {
+                "id" : self.id(),
+                "numero" : self.numero(),
+                "bloco_id" : self.numeroBlocoSelected()
+            };
 
+            $.ajax({
+                url: origin + "/condominio/index.php/apartamento/alterar",
+                type: "POST",
+                data: parameters,
+                dataType: "json",
+
+                success: function(response) {
+                    let message = response.message;
+                    let status = response.status;
+                    var parametros = parameters;
+
+                    $('<div></div>').html(message).dialog({
+                        title: "Informação",
+                        resizable: false,
+                        modal: true,
+                        buttons: {
+                            'Ok': function () {
+                                $(this).dialog('close');
+
+                                if (status == 1) {
+                                    self.upgradeTable();
+                                    self.reset();
+                                }
+                            }
+                        }
+                    });
+                }
+            });
         };
 
         self.upgradeTable = function() {
