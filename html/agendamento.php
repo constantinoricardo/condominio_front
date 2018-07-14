@@ -1,4 +1,4 @@
-<script type="text/html" id="agendamento">
+<?php include 'topo.php'; ?>
     <div class="places">
 
         <h1>Tela de Agendamento</h1>
@@ -32,4 +32,4 @@
         </div>
 
     </div>
-</script>
+<?php include 'cabecalho.php'; ?>

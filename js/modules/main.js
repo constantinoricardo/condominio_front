@@ -3,15 +3,12 @@ define('main',
         'knockout'],
     function ($, ko) {
 
-    let menuChoise = function() {
+    let main = function() {
 
-        this.templatePrincipal = ko.observable('home');
-
-        this.choiseOption = function(objeto, option) {
-            option.templatePrincipal(objeto);
+        this.origin = function() {
+            return window.location.origin;
         }
-    }
+    };
 
-    ko.options.useOnlyNativeEvents = true;
-    ko.applyBindings(new menuChoise());
+    return new main();
 });
