@@ -32,12 +32,9 @@ define('apartamento', [
         };
 
         self.cancelar = function() {
-
             self.reset();
-
             self.buttonAdd(true);
             self.buttonAlterar(false);
-
             self.selectedItem(null);
         };
 
@@ -121,7 +118,7 @@ define('apartamento', [
         };
 
         self.alterar = function() {
-            
+
             let origin = main.origin();
             let parameters = {
                 "id" : self.id(),
