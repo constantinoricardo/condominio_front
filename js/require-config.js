@@ -5,7 +5,8 @@ require.config({
         'jqueryui': '../node_modules/jqueryui/jquery-ui',
         'main': '../js/modules/main',
         'bloco': '../js/modules/app/bloco',
-        'apartamento': '../js/modules/app/apartamento'
+        'apartamento': '../js/modules/app/apartamento',
+        'morador': '../js/modules/app/morador'
     }
 });
 
@@ -22,6 +23,12 @@ if (page == "bloco") {
 if (page == "apartamento") {
     require(['apartamento'], function (apartamento) {
         apartamento.init();
+    });
+}
+
+if (page == "morador") {
+    require(['morador'], function(morador) {
+        morador.init();
     });
 }
 
