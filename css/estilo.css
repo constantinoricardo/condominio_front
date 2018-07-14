@@ -84,6 +84,26 @@ div.places div.linhaFormButton {
     padding: 12px 0px 8px 80px;
 }
 
+div.places div.linhaFormDouble {
+    width: 300px;
+    padding: 10px 0px 10px 15px;
+    float: left;
+}
+
+div.mensagem {
+    width: 300px;
+    margin-left: 339px;
+    position: relative;
+    height: 77px;
+}
+
+div.mensagem span {
+    color: #cd0a0a;
+    font-family: arial;
+    display: block;
+    text-align: center;
+}
+
 div.places div.linhaForm input,
 div.places div.linhaForm select,
 div.places div.linhaFormButton button,

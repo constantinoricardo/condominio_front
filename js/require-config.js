@@ -5,7 +5,8 @@ require.config({
         'jqueryui': '../node_modules/jqueryui/jquery-ui',
         'main': '../js/modules/main',
         'bloco': '../js/modules/app/bloco',
-        'apartamento': '../js/modules/app/apartamento'
+        'apartamento': '../js/modules/app/apartamento',
+        'morador': '../js/modules/app/morador'
     }
 });
 
