@@ -76,6 +76,48 @@ define('morador', [
         };
 
         self.add = function(item) {
+            let origin = main.origin();
+
+            let parameters = {
+                "nome" : self.nome(),
+                "cpf" : self.cpf(),
+                "apartamento_id" : self.numeroApartamentoSelected()
+            };
+
+            $.ajax({
+                url: origin + "/condominio/index.php/morador/inserir",
+                type: "POST",
+                data: parameters,
+                dataType: "json",
+
+                success: function(response) {
+                    let message = response.message;
+                    let status = response.status;
+
+                    $('<div></div>').html(message).dialog({
+                        title: "Informação",
+                        resizable: false,
+                        modal: true,
+                        buttons: {
+                            'Ok': function () {
+                                $(this).dialog('close');
+
+                                if (status == 1) {
+                                    self.upgradeTable();
+                                    self.reset();
+                                }
+                            }
+                        }
+                    });
+                }
+            });
+        };
+
+        self.getList = function(item) {
+
+        };
+
+        self.upgradeTable = function(item) {
 
         };
 
@@ -127,6 +169,7 @@ define('morador', [
 
         self.init = function() {
             self.getCombos();
+            self.getList();
 
             ko.applyBindings(self, document.getElementById("morador"));
         }
